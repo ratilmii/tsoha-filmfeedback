@@ -22,50 +22,40 @@ Aivan aluksi ohjeet sovelluksen paikalliseen käynnistykseen:
 
 Kloonaa tämä repositorio omalle koneellesi ja siirry sen juurikansioon. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
 
-<pre>
 ```
 DATABASE_URL=<tietokannan-paikallinen-osoite>
 SECRET_KEY=<salainen-avain>
 ```
-</pre>
 
 tietokannan paikallinen osoite on todennäköisesti luokkaa:
 
-<pre>
 ```
 postgresql:///user
 ```
-</pre>
 
 missä user on käyttäjänimesi. Salainen avain puolestaan voidaan luoda esim. komennoilla:
 
-<pre>
-```python
+```
 python3
 import secrets
 secrets.token_hex(16)
 ```
-</pre>
 
 Aktivoi lopuksi virtuaaliympäristö, asenna riippuvuudet ja määritä tietokantojen skeema komennoilla:
 
-<pre>
-```python
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install -r ./requirements.txt
 
 psql < schema.sql
 ```
-</pre>
 
 Ja nyt voit käynnistää sovelluksen komennolla:
 
-<pre>
-```python
+```
 flask run
 ```
-</pre>
 
 ##Esitiedot
 
