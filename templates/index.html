@@ -1,0 +1,15 @@
+<h1>Welcome to FilmFeedback!</h1>
+<p>In this app you can browse and review movies by giving them a star rating and an optional written review.</p>
+<p>You can also read and (eventually) rate other users' reviews!</p>
+
+<hr>
+
+<a href="/browse"><button>Browse Movies</button></a>
+
+<!-- Check if user is already logged in -->
+{% if username %}
+    <p>You are currently logged in as: {{ username }}</p>
+    <a href="/logout"><button>Logout</button></a>
+{% else %}
+    <a href="/login"><button>Login</button></a>
+{% endif %}

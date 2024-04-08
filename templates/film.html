@@ -1,0 +1,106 @@
+<h1>{{ movie['title'] }}</h1>
+<p>by <strong>{{ movie['director'] }}</strong> ({{ movie['release_year'] }})</p>
+    
+<!-- Average star rating -->
+{% if movie['avg_rating'] %}
+<p><strong>Average Star Rating:</strong> {{ movie['avg_rating'] }}</p>
+{% else %}
+<p>Not yet rated, be the first!</p>
+{% endif %}
+
+<!-- Genres -->
+<p><strong>Genres:</strong><br>
+{% for genre in movie['genres'] %}
+    {{ genre.genre_name }}{% if not loop.last %}, {% endif %}
+{% endfor %}
+</p>
+    
+<!-- Runtime -->
+<p>Runtime: {{ movie['runtime'] }} minutes</p>
+    
+<!-- Plot summary -->
+<p>{{ movie['plot_summary'] }}</p>
+   
+<!-- Starring -->
+<p><strong>Starring:</strong><br>
+{% for actor in movie['actors'] %}
+    {{ actor.actor_name }}{% if not loop.last %}, {% endif %}
+{% endfor %}
+</p>
+
+<!-- User's own review -->
+<hr>
+<h2>My thoughts:</h2>
+
+{% if user_id %}
+    {% if user_review %}
+    <div class="user-review">
+        <p><strong>Rating:</strong> {{ user_review.star_rating }} stars</p>
+        <p>{{ user_review.review_text }}</p>
+        <p><strong>Agree</strong> {{ user_review.likes }} / {{ user_review.dislikes }} <strong>Disagree</strong></p>
+    </div>
+    <hr>
+    {% else %}
+    <!-- Display the review form -->
+    <form action="/submit_review" method="post" id="review_form">
+        <input type="hidden" name="movie_id" value="{{ movie.id }}">
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+        <label for="star_rating">Star Rating:</label>
+        <select name="star_rating" id="star_rating">
+            <option value="" selected disabled>Select rating</option>
+            <option value="0.5">0.5</option>
+            <option value="1.0">1.0</option>
+            <option value="1.5">1.5</option>
+            <option value="2.0">2.0</option>
+            <option value="2.5">2.5</option>
+            <option value="3.0">3.0</option>
+            <option value="3.5">3.5</option>
+            <option value="4.0">4.0</option>
+            <option value="4.5">4.5</option>
+            <option value="5.0">5.0</option>
+        </select>
+        <br>
+        <label for="review_text">Review:</label>
+        <br>
+        <textarea name="review_text" id="review_text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Submit">
+        <input type="button" value="Nevermind" onclick="resetReviewForm()">
+    </form>
+    <script>
+        function resetReviewForm() {
+            document.getElementById("star_rating").selectedIndex = 0;
+            document.getElementById("review_text").value = "";
+        }
+    </script>
+    {% endif %}
+{% else %}
+    <!-- Display a button to go to the login page -->
+    <a href="/login"><button>Login to write a review</button></a>
+{% endif %}
+
+<!-- Reviews -->
+<hr>
+<h2>See what others think:</h2>
+
+{% if reviews %}
+    {% for review in reviews %}
+    <!-- Fetch username based on user_id -->
+    {% set username = review['username'] %}
+    <div class="review">
+        <p><strong>User:</strong> {{ username }}, {{ review.star_rating }} stars</p>
+        <p>{{ review['review_text'] }}</p>
+        <p><strong>Agree</strong> {{ review['likes'] }} / {{ review['dislikes'] }} <strong>Disagree</strong></p>
+    </div>
+    <hr>
+    {% endfor %}
+{% else %}
+    <p>Apparently nothing yet!</p>
+{% endif %}
+
+
+<a href="/browse"><button>Back to List</button></a>
+<a href="/"><button>Back Home</button></a>
+  
+
+     

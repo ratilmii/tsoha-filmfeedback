@@ -1,0 +1,13 @@
+<h1>Submit review</h1>
+<h2>{{ movie_title }}</h2>
+
+<p>A penny for your thoughts?</p>
+<form action="/submit_review" method="post">
+    <textarea name="review_text" rows="6" cols="100"></textarea><br>
+    <input type="hidden" name="movie_id" value="{{ movie_id }}">
+    <input type="submit" value="Submit">
+</form>
+
+<form action="/film/{{ movie_id }}" method="get">
+    <input type="submit" value="Nevermind">
+</form>

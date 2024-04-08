@@ -1,0 +1,15 @@
+<h1>Browse Films</h1>
+
+{% for film in films %}
+    <hr>
+    <a href="/films/{{ film.url_title }}">{{ film.title }}{% if film.release_year %} ({{ film.release_year }}){% endif %}, by {{ film.director }} -
+    {% if film.avg_rating %}
+        {{ film.avg_rating }} stars
+    {% else %}
+        Not yet rated
+    {% endif %}
+    </a>
+{% endfor %}
+<hr>
+
+<a href="/"><button>Back Home</button></a>
