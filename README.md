@@ -16,7 +16,7 @@ Sovelluksen ominaisuuksia ovat:
 
 Tällä hetkellä kaikki listatuista ominaisuuksista eivät ole vielä valmiina, mutta perustoiminnallisuus on kunnossa.
 
-#Käyttöohjeet
+# Käyttöohjeet
 
 Aivan aluksi ohjeet sovelluksen paikalliseen käynnistykseen:
 
@@ -57,15 +57,15 @@ Ja nyt voit käynnistää sovelluksen komennolla:
 flask run
 ```
 
-##Esitiedot
+## Esitiedot
 
 Sovellukseen on lisätty valmiiksi kymmenen elokuvaa tietoineen, jotta sovelluksen käyttöä voi testata. Käyttäjätunnuksia ei ole valmiina yhtään.
 
-##Aloitus
+## Aloitus
 
 Sovellus avautuu etusivulle, jossa on tervetulotoivotus, sekä painikkeet elokuvalistaan pääsyä tai sisäänkirjautumista varten. Käyttäjä voi selata elokuvia ja niiden arvosteluja ilman sisäänkirjautumista, mutta oman arvostelun voi lisätä vasta kirjautuneena.
 
-##Tunnuksen luonti ja kirjautuminen
+## Tunnuksen luonti ja kirjautuminen
 
 Kun käyttäjä painaa "login"-nappia, avautuu kirjautumissivu. Oletuksena on, että käyttäjä on jo rekisteröitynyt, mutta mikäli käyttäjä on uusi tulokas, on sivun alalaidassa linkki rekisteröintisivulle, joka on muuten samanlainen, kuin kirjautumissivu, mutta salasana tulee syöttää kahteen kertaan.
 
@@ -73,11 +73,11 @@ Kun käyttäjä on joko kirjautunut tai rekisteröitynyt uudeksi käyttäjäksi,
 
 Salasanat on tallennettu tietokantaan hash-muodossa.
 
-##Elokuvalista
+## Elokuvalista
 
 Elokuvat ovat listassa linkkeinä joista painamalla käyttäjä pääsee yksittäisten elokuvien omille sivuille, joissa on listaa perusteellisempaa tietoa ja mahdollisuus antaa elokuvalle arvostelu ja lukea muiden antamia arvosteluja.
 
-##Elokuvasivu
+## Elokuvasivu
 
 Elokuvan omalla sivulla on tietoa mm. sen ohjaajasta, julkaisuvuodesta, genreistä ja näyttelijöistä. Jokainen elokuva voi kuulua yhteen tai useampaan genreen ja sisältää listan sen tärkeimmistä näyttelijöistä.
 
@@ -85,11 +85,11 @@ Elokuvan sivulla on myös sen saama keskimääräinen arvosana "tähtinä", joit
 
 Mikäli käyttäjä ei ole kirjautunut sisään, on oman arvostelun kohdalla nappi josta pääsee kirjautumissivulle.
 
-##Lopetus
+## Lopetus
 
 Käyttäjä voi kirjautua ulos ja palata myöhemmin takaisin, tiedot säilyvät.
 
-##Jatkosuunnitelmat
+## Jatkosuunnitelmat
 
 * Ulkoasun parantaminen, CSS ja mahdollisesti Javascript-kirjautumisruutu
 * arvostelujen plus- ja miinuspisteet
