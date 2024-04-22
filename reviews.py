@@ -22,7 +22,7 @@ def get_user_review(user_id, movie_id):
 
 def get_reviews_for_movie(user_id, movie_id):
     sql = """
-    SELECT R.id, R.user_id, R.review_text, R.star_rating, U.username
+    SELECT R.id, R.user_id, R.review_text, R.star_rating, R.likes, R.dislikes, U.username
     FROM Reviews R
     JOIN Users U ON R.user_id = U.id
     WHERE R.movie_id = :movie_id
@@ -36,7 +36,9 @@ def get_reviews_for_movie(user_id, movie_id):
             'user_id': row[1],
             'review_text': row[2],
             'star_rating': row[3],
-            'username': row[4]
+            'likes': row[4],
+            'dislikes': row[5],
+            'username': row[6]
         }
         reviews.append(review)
     return reviews

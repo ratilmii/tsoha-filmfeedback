@@ -1,20 +1,26 @@
 # FilmFeedback
 
-Sovelluksen avulla käyttäjä voi selata tietoja elokuvista, mm. ohjaaja, päärooleissa esiintyvät näyttelijät, genre, ensi-ilta, sekä tiivistelmä juonesta. Käyttäjä voi myös arvioida elokuvan joko pelkästään tähdillä, tai kirjoittamalla lisäksi sanallisen arvostelun. Jokainen käyttäjä on joko peruskäyttäjä tai ylläpitäjä.
+Sovelluksen avulla käyttäjä voi selata tietoja elokuvista, mm. ohjaaja, päärooleissa esiintyvät näyttelijät, genre, julkaisuvuosi, kesto, sekä tiivistelmä juonesta. Käyttäjä voi myös arvioida elokuvan joko pelkästään tähdillä, tai kirjoittamalla lisäksi sanallisen arvostelun. Jokainen käyttäjä on joko peruskäyttäjä tai ylläpitäjä.
 
 Sovelluksen ominaisuuksia ovat:
 
-* Käyttäjä voi luoda uuden tunnuksen ja käyttää tätä tunnusta kirjautuakseen sisään ja ulos
-* Käyttäjä näkee listan elokuvista joko aakkosjärjestyksessä, tai ilmestymispäivän tai tähtimäärän mukaan järjestettynä.
-* Käyttäjä voi myös hakea tiettyä elokuvaa nimen tai genren perusteella. Elokuva voi kuulua yhteen tai useampaan genreen.
-* Käyttäjä voi antaa elokuvalle arvion tähdillä (min. puoli, maks. viisi) ja halutessaan kirjoittaa sanallisen arvostelun.
-* Käyttäjä voi lukea muiden kirjoittamia arvosteluja ja antaa niille ylä- tai alapeukun.
-* Sanalliset arvostelut näkyvät elokuvien sivuilla, järjestettynä peukutusten perusteella (joko laskevassa tai nousevassa järjestyksessä).
-* Tähtimäärät näkyvät elokuvien sivuilla sekä keskiarvona että jakaumana.
-* Ylläpitäjä voi lisätä tai poistaa elokuvia, sekä muokata olemassaolevien elokuvien tietoja.
-* Ylläpitäjä voi tarvittaessa poistaa käyttäjien antamia arvosteluja, sekä antaa porttikieltoja.
+- [x] Käyttäjä voi luoda uuden tunnuksen ja käyttää tätä tunnusta kirjautuakseen sisään ja ulos.
+- [x] Käyttäjä näkee listan elokuvista ilmestymisvuoden mukaan järjestettynä.
+- [x] Elokuva voi kuulua yhteen tai useampaan genreen.
+- [x] Käyttäjä voi antaa elokuvalle arvion tähdillä (min. puoli, maks. viisi) ja halutessaan kirjoittaa sanallisen arvostelun.
+- [ ] Käyttäjä voi järjestää elokuvalistan muidenkin kriteerien perusteella, sekä hakea tiettyä elokuvaa nimen tai genren perusteella.
+- [x] Käyttäjä voi lukea muiden kirjoittamia arvosteluja.
+- [ ] Käyttäjä voi antaa muiden antamille arvosteluille ns. ylä- tai alapeukun.
+- [x] Sanalliset arvostelut näkyvät elokuvien sivuilla arvostelujärjestyksessä.
+- [ ] Arvostelut voidaan järjestää myös peukutusten perusteella (joko laskevassa tai nousevassa järjestyksessä).
+- [x] Tähtimäärät näkyvät elokuvien sivuilla keskiarvona
+- [ ] Tähtimäärät näkyvät myös jakaumana.
+- [ ] Ylläpitäjä voi lisätä tai poistaa elokuvia, sekä muokata olemassaolevien elokuvien tietoja.
+- [x] Ylläpitäjä voi tarvittaessa poistaa käyttäjien antamia arvosteluja
+- [x] Käyttäjä voi poistaa oman arvostelunsa.
+- [ ] Ylläpitäjä voi antaa porttikieltoja.
 
-Tällä hetkellä kaikki listatuista ominaisuuksista eivät ole vielä valmiina, mutta perustoiminnallisuus on kunnossa.
+Tällä hetkellä listan merkityt toiminnallisuudet ovat valmiina, tyhjät kohdat ovat vielä työn alla.
 
 # Käyttöohjeet
 
@@ -73,6 +79,17 @@ Kun käyttäjä on joko kirjautunut tai rekisteröitynyt uudeksi käyttäjäksi,
 
 Salasanat on tallennettu tietokantaan hash-muodossa.
 
+## Admin-tunnuksen luonti
+
+Sovelluksen täyttä toiminnallisuutta testatakseen käyttäjän tulee voida luoda admin-tunnus. Tämän sovelluksen puitteissa se toteutetaan niin, että luotuaan ensin tavallisen tunnuksen, sovellusta paikallisesti testaava käyttäjä voi manuaalisesti muokata Users-taulun "is_admin" saraketta haluamalleen käyttäjänimelle (todellisessa käytössä admin-tason tunnuksien luomiselle olisi luonnollisesti täysin oma toiminnallisuutensa).
+
+Kun käyttäjä on luonut itselleen tunnuksen, jonka hän haluaa muuttaa admin-tunnukseksi, tapahtuu se seuraavalla tavalla:
+
+```
+psql -d käyttäjän_tietokannan_nimi -c  "UPDATE Users SET is_admin = true WHERE username = 'käyttäjänimi';"
+```
+missä "käyttäjän_tietokannan_nimi" on käytössä olevan PostgreSQL-tietokannan nimi ja "käyttäjänimi" sen tunnuksen nimi, joka halutaan muuttaa admin-tunnukseksi.
+
 ## Elokuvalista
 
 Elokuvat ovat listassa linkkeinä joista painamalla käyttäjä pääsee yksittäisten elokuvien omille sivuille, joissa on listaa perusteellisempaa tietoa ja mahdollisuus antaa elokuvalle arvostelu ja lukea muiden antamia arvosteluja.
@@ -92,6 +109,8 @@ Käyttäjä voi kirjautua ulos ja palata myöhemmin takaisin, tiedot säilyvät.
 ## Jatkosuunnitelmat
 
 * Ulkoasun parantaminen, CSS ja mahdollisesti Javascript-kirjautumisruutu
+* kuvien lisääminen tietokantaan
 * arvostelujen plus- ja miinuspisteet
+* arvostelujen muokkaaminen
 * elokuvien ja arvostelujen lajittelu ja järjestäminen eri seikkojen perusteella
 * elokuvien määrän lisääminen ja hakumahdollisuus mm. nimen tai julkaisuvuoden mukaan
