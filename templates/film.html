@@ -38,6 +38,9 @@
         <p><strong>Rating:</strong> {{ user_review.star_rating }} stars</p>
         <p>{{ user_review.review_text }}</p>
         <p><strong>Agree</strong> {{ user_review.likes }} / {{ user_review.dislikes }} <strong>Disagree</strong></p>
+        <form action="/delete_review/{{ user_review.id }}" method="post">
+            <input type="submit" value="Delete Review">
+        </form>
     </div>
     <hr>
     {% else %}
@@ -90,7 +93,12 @@
     <div class="review">
         <p><strong>User:</strong> {{ username }}, {{ review.star_rating }} stars</p>
         <p>{{ review['review_text'] }}</p>
-        <p><strong>Agree</strong> {{ review['likes'] }} / {{ review['dislikes'] }} <strong>Disagree</strong></p>
+        <p><strong>Agree</strong> {{ review.likes }} / {{ review.dislikes }} <strong>Disagree</strong></p>
+        {% if is_admin %}
+        <form action="/delete_review/{{ review.id }}" method="post">
+            <input type="submit" value="Delete Review">
+        </form>
+        {% endif %}
     </div>
     <hr>
     {% endfor %}

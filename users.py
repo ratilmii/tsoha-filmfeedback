@@ -41,3 +41,12 @@ def user_name():
         if username:
             return username[0]
     return None
+
+def is_admin():
+    user_id = session.get("user_id", 0)
+    if user_id:
+        sql = "SELECT is_admin FROM Users WHERE id=:user_id"
+        result = db.session.execute(text(sql), {"user_id":user_id})
+        return result.fetchone()[0]
+    else:
+        return False

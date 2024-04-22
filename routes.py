@@ -60,6 +60,8 @@ def film(url_title):
         return render_template("error.html", message="Movie not found")
 
     user_id = users.user_id()
+    is_user_admin = users.is_admin()
+
     if user_id:
         user_review = reviews.get_user_review(user_id, movie['id'])
     else:
@@ -67,13 +69,13 @@ def film(url_title):
 
     other_reviews = reviews.get_reviews_for_movie(user_id, movie['id'])
 
-    return render_template("film.html", user_id=user_id, movie=movie, user_review=user_review, reviews=other_reviews)
+    return render_template("film.html", user_id=user_id, is_admin=is_user_admin, movie=movie, user_review=user_review, reviews=other_reviews)
 
 @app.route("/submit_review", methods=["POST"])
 def submit_review():
     if request.method == "POST":
         user_id = users.user_id()
-        if not users.user_id():
+        if not user_id:
             return redirect("login")
 
         movie_id = request.form["movie_id"]
@@ -95,3 +97,32 @@ def submit_review():
             return redirect(f"films/{url_title}")
         else:
             return render_template("error.html", message="Movie not found")
+
+@app.route("/delete_review/<int:review_id>", methods=["POST"])
+def delete_review(review_id):
+    if request.method == "POST":
+        user_id = users.user_id()
+        review = reviews.get_review_by_id(review_id)
+        movie_id = reviews.get_movie_id_by_review(review_id)
+        url_title = films.get_url_title(movie_id)
+
+        if not user_id:
+            return "You must be logged in to delete a review."
+
+        if users.is_admin():
+            reviews.delete_review(review_id)
+            if url_title:
+                return redirect(f"/films/{url_title}")
+            else:
+                return render_template("error.html", message="Movie not found")
+
+        if review and review.user_id == user_id:
+            reviews.delete_review(review_id)
+            if url_title:
+                return redirect(f"/films/{url_title}")
+            else:
+                return render_template("error.html", message="Movie not found")
+
+        return "You do not have permission to delete this review."
+
+
