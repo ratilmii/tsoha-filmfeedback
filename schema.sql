@@ -49,18 +49,18 @@ CREATE TABLE Reviews (
     user_id INTEGER REFERENCES Users(id),
     review_text TEXT,
     star_rating DECIMAL(2,1),
-    time_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    time_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    likes INTEGER DEFAULT 0,
+    dislikes INTEGER DEFAULT 0
 );
 
-
--- Likes_Dislikes table
-CREATE TABLE Likes_Dislikes (
+-- User_Review_Reaction table
+CREATE TABLE User_Review_Reaction (
     id SERIAL PRIMARY KEY,
-    review_id INTEGER REFERENCES Reviews(id),
     user_id INTEGER REFERENCES Users(id),
-    reaction INTEGER
+    review_id INTEGER REFERENCES Reviews(id),
+    reaction INTEGER DEFAULT 0 -- 0 for neutral, -1 for dislike and 1 for like
 );
-
 
 -- Creating the initial database with ten famous movies
 -- Insert movies
