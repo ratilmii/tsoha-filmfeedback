@@ -40,6 +40,7 @@
         <p><strong>Agree</strong> {{ user_review.likes }} / {{ user_review.dislikes }} <strong>Disagree</strong></p>
         <form action="/delete_review/{{ user_review.id }}" method="post">
             <input type="submit" value="Delete Review">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         </form>
     </div>
     <hr>
@@ -68,6 +69,7 @@
         <textarea name="review_text" id="review_text" rows="4" cols="50"></textarea>
         <br>
         <input type="submit" value="Submit">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         <input type="button" value="Nevermind" onclick="resetReviewForm()">
     </form>
     <script>
@@ -97,6 +99,7 @@
         {% if is_admin %}
         <form action="/delete_review/{{ review.id }}" method="post">
             <input type="submit" value="Delete Review">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         </form>
         {% endif %}
     </div>

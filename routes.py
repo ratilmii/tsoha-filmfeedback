@@ -59,6 +59,7 @@ def film(url_title):
     if not movie:
         return render_template("error.html", message="Movie not found")
 
+    csrf_token = users.csrf_token()
     user_id = users.user_id()
     is_user_admin = users.is_admin()
 
@@ -69,11 +70,16 @@ def film(url_title):
 
     other_reviews = reviews.get_reviews_for_movie(user_id, movie['id'])
 
-    return render_template("film.html", user_id=user_id, is_admin=is_user_admin, movie=movie, user_review=user_review, reviews=other_reviews)
+    return render_template("film.html", user_id=user_id, is_admin=is_user_admin, movie=movie, user_review=user_review, reviews=other_reviews, csrf_token=csrf_token)
 
 @app.route("/submit_review", methods=["POST"])
 def submit_review():
     if request.method == "POST":
+        csrf_token = users.csrf_token()
+
+        if csrf_token != request.form["csrf_token"]:
+            abort(403)
+
         user_id = users.user_id()
         if not user_id:
             return redirect("login")
@@ -101,6 +107,11 @@ def submit_review():
 @app.route("/delete_review/<int:review_id>", methods=["POST"])
 def delete_review(review_id):
     if request.method == "POST":
+        csrf_token = users.csrf_token()
+
+        if csrf_token != request.form["csrf_token"]:
+            abort(403)
+
         user_id = users.user_id()
         review = reviews.get_review_by_id(review_id)
         movie_id = reviews.get_movie_id_by_review(review_id)
