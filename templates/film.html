@@ -46,7 +46,7 @@
     <hr>
     {% else %}
     <!-- Display the review form -->
-    <form action="/submit_review" method="post" id="review_form">
+    <form action="/submit_review" method="post" id="review_form" onsubmit="return validateForm()">
         <input type="hidden" name="movie_id" value="{{ movie.id }}">
         <input type="hidden" name="user_id" value="{{ user_id }}">
         <label for="star_rating">Star Rating:</label>
@@ -71,11 +71,23 @@
         <input type="submit" value="Submit">
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         <input type="button" value="Nevermind" onclick="resetReviewForm()">
+        <p id="rating_error" style="color: red; display: none;">Please pick a rating</p>
     </form>
+
     <script>
+        function validateForm() {
+            var rating = document.getElementById("star_rating").value;
+            if (rating === "") {
+                document.getElementById("rating_error").style.display = "block";
+                return false;
+            }
+            return true;
+        }
+
         function resetReviewForm() {
             document.getElementById("star_rating").selectedIndex = 0;
             document.getElementById("review_text").value = "";
+            document.getElementById("rating_error").style.display = "none";
         }
     </script>
     {% endif %}
