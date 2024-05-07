@@ -37,7 +37,6 @@ def user_id():
     return session.get("user_id", 0)
 
 def csrf_token():
-    print(session.get("csrf_token", 0))
     return session.get("csrf_token", 0)
 
 def user_name():
