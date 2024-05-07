@@ -8,19 +8,20 @@ Sovelluksen ominaisuuksia ovat:
 - [x] Käyttäjä näkee listan elokuvista ilmestymisvuoden mukaan järjestettynä.
 - [x] Elokuva voi kuulua yhteen tai useampaan genreen.
 - [x] Käyttäjä voi antaa elokuvalle arvion tähdillä (min. puoli, maks. viisi) ja halutessaan kirjoittaa sanallisen arvostelun.
-- [ ] Käyttäjä voi järjestää elokuvalistan muidenkin kriteerien perusteella, sekä hakea tiettyä elokuvaa nimen tai genren perusteella.
 - [x] Käyttäjä voi lukea muiden kirjoittamia arvosteluja.
-- [ ] Käyttäjä voi antaa muiden antamille arvosteluille ns. ylä- tai alapeukun.
 - [x] Sanalliset arvostelut näkyvät elokuvien sivuilla arvostelujärjestyksessä.
-- [ ] Arvostelut voidaan järjestää myös peukutusten perusteella (joko laskevassa tai nousevassa järjestyksessä).
 - [x] Tähtimäärät näkyvät elokuvien sivuilla keskiarvona
-- [ ] Tähtimäärät näkyvät myös jakaumana.
-- [ ] Ylläpitäjä voi lisätä tai poistaa elokuvia, sekä muokata olemassaolevien elokuvien tietoja.
 - [x] Ylläpitäjä voi tarvittaessa poistaa käyttäjien antamia arvosteluja
 - [x] Käyttäjä voi poistaa oman arvostelunsa.
-- [ ] Ylläpitäjä voi antaa porttikieltoja.
 
-Tällä hetkellä listan merkityt toiminnallisuudet ovat valmiina, tyhjät kohdat ovat vielä työn alla.
+Sovelluksen mahdollisia tulevia ominaisuuksia ovat:
+
+- [ ] Käyttäjä voi järjestää elokuvalistan muidenkin kriteerien perusteella, sekä hakea tiettyä elokuvaa nimen tai genren perusteella.
+- [ ] Käyttäjä voi antaa muiden antamille arvosteluille ns. ylä- tai alapeukun.
+- [ ] Arvostelut voidaan järjestää myös peukutusten perusteella (joko laskevassa tai nousevassa järjestyksessä).
+- [ ] Tähtimäärät näkyvät myös jakaumana.
+- [ ] Ylläpitäjä voi lisätä tai poistaa elokuvia, sekä muokata olemassaolevien elokuvien tietoja.
+- [ ] Ylläpitäjä voi antaa porttikieltoja.
 
 # Käyttöohjeet
 
@@ -108,8 +109,11 @@ Käyttäjä voi kirjautua ulos ja palata myöhemmin takaisin, tiedot säilyvät.
 
 ## Jatkosuunnitelmat
 
-* Ulkoasun parantaminen, CSS ja mahdollisesti Javascript-kirjautumisruutu
+Sovelluksesta jäi puuttumaan joitakin haastavammista ominaisuuksista, mutta olen kuitenkin tyytyväinen sen nykytilanteeseen. Voin lisäillä jäljellä olevia ominaisuuksia myöhemmin, mutta perustoiminnallisuus on nyt valmis. Jatkossa olisi mielenkiintoista toteuttaa ainakin osa seuraavista:
+
+* Ulkoasun parantaminen entisestään, tällä hetkellä vasta login- ja register-sivu siistinä
 * kuvien lisääminen tietokantaan
+* virheilmoitusten yhdenmukaistaminen ja eri virhetilanteiden yksilöllisempi huomioonottaminen (ts. ei vain geneeristä "ei onnistunut" -ilmoitusta, vaan tarkempi ilmoitus siitä, mikä meni pieleen)
 * arvostelujen plus- ja miinuspisteet
 * arvostelujen muokkaaminen
 * elokuvien ja arvostelujen lajittelu ja järjestäminen eri seikkojen perusteella
