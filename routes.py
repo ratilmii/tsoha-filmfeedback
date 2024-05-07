@@ -43,7 +43,7 @@ def register():
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("error.html", message="Signup failed.¨")
+            return render_template("error.html", message="Signup failed.")
 
 @app.route("/browse")
 def browse():
