@@ -19,11 +19,11 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if not username or not password:
-            render_template("error.html", message="Please enter both username and password")
+            return render_template("login.html", error="Please enter both username and password")
         if users.login(username, password):
             return redirect("/")
         else:
-            return render_template("error.html", message="Incorrect login information")
+            return render_template("login.html", error="Incorrect login information")
 
 @app.route("/logout")
 def logout():
